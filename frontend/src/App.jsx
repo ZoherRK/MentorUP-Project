@@ -61,9 +61,11 @@ function RequireAdmin({ children }) {
   return children;
 }
 
-function GuestOnly({ children }) {
-  const { isAuth } = useAuth();
-  return isAuth ? <Navigate to="/" replace /> : children;
+function GuestOnly({ children, adminRedirect = false }) {
+  const { isAuth, usuario } = useAuth();
+  if (!isAuth) return children;
+  if (usuario?.rol === 'admin') return <Navigate to="/admin/dashboard" replace />;
+  return <Navigate to="/" replace />;
 }
 
 // ── App ───────────────────────────────────────────────────────────────────────

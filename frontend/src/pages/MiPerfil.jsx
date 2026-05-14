@@ -189,6 +189,7 @@ export default function MiPerfil() {
 
   const crearAnuncio = async (e) => {
     e.preventDefault();
+    console.log('FORM:', form);
     try {
       await apiCreateAnuncio({ ...form, precio_hora: Number(form.precio_hora) });
 
@@ -202,7 +203,11 @@ export default function MiPerfil() {
       setFormDisponibilidad([]);
       setShowForm(false);
       loadAnuncios();
-    } catch (e) { setMsg(e.message); }
+    } catch (e) { 
+      console.log('ERROR:', e.message);
+      console.log('ERROR mensaje:', err.message);
+      setMsg(e.message); }
+        
   };
 
   const eliminarAnuncio = async (id) => {

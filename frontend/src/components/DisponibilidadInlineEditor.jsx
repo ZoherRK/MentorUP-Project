@@ -3,8 +3,8 @@ import { apiGetDisponibilidad, apiSaveDisponibilidad } from '../services/api';
 
 const DIAS = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
 
-const HORAS = Array.from({ length: 48 }, (_, i) => {
-  const h = Math.floor(i / 2);
+const HORAS = Array.from({ length: 36 }, (_, i) => {
+  const h = Math.floor(i / 2) + 6;
   const m = i % 2 === 0 ? '00' : '30';
   return `${h}:${m}`;
 });
@@ -48,7 +48,7 @@ function BloqueRow({ bloque, onUpdate, onDelete }) {
           <option key={h} value={h}>{h}</option>
         ))}
       </select>
-      <button onClick={onDelete} style={s.btnDelete} title="Eliminar bloque">
+      <button type="button" onClick={onDelete} style={s.btnDelete} title="Eliminar bloque">
         ✕
       </button>
     </div>
@@ -118,7 +118,7 @@ export default function DisponibilidadEditor() {
             Define cuándo estás disponible para dar clases. Los alumnos solo podrán reservar dentro de estos horarios.
           </p>
         </div>
-        <button onClick={addBloque} style={s.btnAdd}>
+        <button type="button" onClick={addBloque} style={s.btnAdd}>
           + Añadir franja horaria
         </button>
       </div>
@@ -136,7 +136,7 @@ export default function DisponibilidadEditor() {
           <p style={s.emptyText}>
             Aún no has definido tu horario. Si no configuras disponibilidad, los alumnos podrán reservar cualquier fecha.
           </p>
-          <button onClick={addBloque} style={s.btnAddAlt}>
+          <button type="button" onClick={addBloque} style={s.btnAddAlt}>
             + Añadir primera franja
           </button>
         </div>
@@ -175,7 +175,7 @@ export default function DisponibilidadEditor() {
 
       {bloques.length > 0 && (
         <div style={s.actions}>
-          <button onClick={handleSave} disabled={saving} style={s.btnSave}>
+          <button type="button" onClick={handleSave} disabled={saving} style={s.btnSave}>
             {saving ? 'Guardando…' : '💾 Guardar disponibilidad'}
           </button>
         </div>

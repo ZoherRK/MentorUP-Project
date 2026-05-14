@@ -48,9 +48,11 @@ export default function Navbar() {
 
           {isAuth ? (
             <>
-              <Link to="/perfil" style={isActive('/perfil') ? s.linkActive : s.link}>
-                Mi perfil
-              </Link>
+              {usuario?.rol !== 'admin' && (
+                <Link to="/perfil" style={isActive('/perfil') ? s.linkActive : s.link}>
+                  Mi perfil
+                </Link>
+              )}
               {usuario?.rol === 'admin' && (
                 <Link to="/admin/dashboard" style={isActive('/admin/dashboard') ? s.linkActive : s.link}>
                   Admin

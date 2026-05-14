@@ -62,11 +62,19 @@ class DisponibilidadHoraria extends Model
     {
         if (!$this->activo) return false;
 
-        // PHP dow: 0=Sunday…6=Saturday; convert to 0=Monday…6=Sunday
-        $dow = ((int) $dt->format('N')) - 1; // N: 1=Monday…7=Sunday
+        $dow = ((int) $dt->format('N')) - 1;
         if ($dow !== $this->dia_semana) return false;
 
-        $t = $dt->format('H:i');
-        return $t >= $this->hora_inicio && $t < $this->hora_fin;
+        // Convertir todo a minutos para evitar problemas "9:00" vs "09:00"
+        $tPartes   = explode(':', $dt->format('G:i'));
+        $tMin      = (int)$tPartes[0] * 60 + (int)$tPartes[1];
+
+        $iniPartes = explode(':', $this->hora_inicio);
+        $iniMin    = (int)$iniPartes[0] * 60 + (int)$iniPartes[1];
+
+        $finPartes = explode(':', $this->hora_fin);
+        $finMin    = (int)$finPartes[0] * 60 + (int)$finPartes[1];
+
+        return $tMin >= $iniMin && $tMin < $finMin;
     }
 }
