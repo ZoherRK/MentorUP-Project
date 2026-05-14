@@ -93,7 +93,7 @@ export default function Home() {
             {t: 'Precios transparentes', d: 'Sin comisiones ocultas. El precio que ves es el que pagas.' },
             {t: 'Horarios flexibles', d: 'Reserva clases según la disponibilidad real del profesor.' },
             {t: 'Valoraciones reales', d: 'Lee reseñas auténticas de otros alumnos antes de elegir.' },
-            {t: 'Gestión online', d: 'Gestiona tus clases, reservas y pagos desde cualquier dispositivo.' },
+            {t: 'Gestión online', d: 'Gestiona tus clases y reservas.' },
             {t: 'Protección garantizada', d: 'Sistema de reservas con confirmación y política de cancelación.' },
           ].map(({ icon, t, d }) => (
             <div key={t} style={s.feature}>
