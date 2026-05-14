@@ -97,6 +97,10 @@ export const apiGetDisponibilidadProfesor = (profesorId) =>
 export const apiVerificarFecha = (profesorId, fecha_clase) =>
   request('POST', `/profesores/${profesorId}/verificar-fecha`, { fecha_clase });
 
+/** Slots libres de un profesor para una fecha y duración dadas */
+export const apiGetSlotsLibres = (profesorId, fecha, duracion = 1) =>
+  request('GET', `/profesores/${profesorId}/slots?fecha=${fecha}&duracion=${duracion}`);
+
 // ── Admin ─────────────────────────────────────────────────────────────────
 
 export const apiAdminStats      = ()           => request('GET',  '/admin/stats', null, true);

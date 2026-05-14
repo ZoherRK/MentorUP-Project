@@ -3,13 +3,20 @@ import { apiGetDisponibilidad, apiSaveDisponibilidad } from '../services/api';
 
 const DIAS = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
 
-const HORAS = Array.from({ length: 29 }, (_, i) => {
-  const h = Math.floor(i / 2) + 8;  // 08:00 – 22:00
+const HORAS = Array.from({ length: 48 }, (_, i) => {
+  const h = Math.floor(i / 2);
   const m = i % 2 === 0 ? '00' : '30';
   return `${String(h).padStart(2, '0')}:${m}`;
 });
 
 function BloqueRow({ bloque, onUpdate, onDelete }) {
+  const handleInicioChange = (nuevaInicio) => {
+    const nuevaFin = nuevaInicio >= bloque.hora_fin
+      ? HORAS[HORAS.indexOf(nuevaInicio) + 1] || '23:30'
+      : bloque.hora_fin;
+    onUpdate({ ...bloque, hora_inicio: nuevaInicio, hora_fin: nuevaFin });
+  };
+
   return (
     <div style={s.bloqueRow}>
       <select
@@ -24,10 +31,10 @@ function BloqueRow({ bloque, onUpdate, onDelete }) {
       <span style={s.rowLabel}>de</span>
       <select
         value={bloque.hora_inicio}
-        onChange={e => onUpdate({ ...bloque, hora_inicio: e.target.value })}
+        onChange={e => handleInicioChange(e.target.value)}
         style={s.select}
       >
-        {HORAS.filter(h => h < bloque.hora_fin).map(h => (
+        {HORAS.filter(h => h < '23:30').map(h => (
           <option key={h} value={h}>{h}</option>
         ))}
       </select>
@@ -89,7 +96,6 @@ export default function DisponibilidadEditor() {
     }
   };
 
-  // Group bloques by day for summary view
   const byDay = DIAS.map((dia, i) => ({
     dia,
     idx: i,
@@ -136,7 +142,6 @@ export default function DisponibilidadEditor() {
         </div>
       ) : (
         <>
-          {/* Grid editor */}
           <div style={s.editorGrid}>
             {bloques.map((bloque, idx) => (
               <BloqueRow
@@ -148,7 +153,6 @@ export default function DisponibilidadEditor() {
             ))}
           </div>
 
-          {/* Weekly summary */}
           <div style={s.summaryTitle}>Resumen semanal</div>
           <div style={s.weekGrid}>
             {byDay.map(({ dia, bloques: bls }) => (
@@ -172,7 +176,7 @@ export default function DisponibilidadEditor() {
       {bloques.length > 0 && (
         <div style={s.actions}>
           <button onClick={handleSave} disabled={saving} style={s.btnSave}>
-            {saving ? 'Guardando…' : 'Guardar disponibilidad'}
+            {saving ? 'Guardando…' : '💾 Guardar disponibilidad'}
           </button>
         </div>
       )}

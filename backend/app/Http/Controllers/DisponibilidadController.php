@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DisponibilidadHoraria;
 use App\Models\Profesor;
+use App\Models\Reserva;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
@@ -67,7 +68,6 @@ class DisponibilidadController extends Controller
                 if ($i >= $j) continue;
                 if ($b1['dia_semana'] !== $b2['dia_semana']) continue;
 
-                // Check overlap: b1.inicio < b2.fin && b2.inicio < b1.fin
                 if ($b1['hora_inicio'] < $b2['hora_fin'] && $b2['hora_inicio'] < $b1['hora_fin']) {
                     return response()->json([
                         'ok'      => false,
@@ -148,5 +148,91 @@ class DisponibilidadController extends Controller
                 ? 'El profesor está disponible en esta franja horaria.'
                 : 'El profesor no está disponible en esta franja horaria. Consulta su disponibilidad.',
         ]);
+    }
+
+    // ─────────────────────────────────────────────────────────────────────
+    // SLOTS LIBRES — devuelve los slots disponibles de un día concreto
+    // considerando la disponibilidad del profesor y las reservas existentes
+    // GET /api/profesores/{id}/slots?fecha=YYYY-MM-DD&duracion=1
+    // ─────────────────────────────────────────────────────────────────────
+
+    public function slotsLibres(Request $request, int $profesorId): JsonResponse
+    {
+        $data = $request->validate([
+            'fecha'    => 'required|date_format:Y-m-d',
+            'duracion' => 'nullable|numeric|in:0.5,1,1.5,2',
+        ]);
+
+        $profesor = Profesor::with('disponibilidad')->find($profesorId);
+        if (!$profesor) {
+            return response()->json(['ok' => false, 'mensaje' => 'Profesor no encontrado.'], 404);
+        }
+
+        $fecha    = $data['fecha'];
+        $duracion = (float) ($data['duracion'] ?? 1);
+
+        // día de semana 0=Lunes…6=Domingo
+        $dt  = new \DateTime($fecha);
+        $dow = ((int) $dt->format('N')) - 1;
+
+        // bloques del profesor para ese día de la semana
+        $bloques = $profesor->disponibilidad->filter(fn($b) => $b->dia_semana === $dow);
+
+        if ($bloques->isEmpty()) {
+            return response()->json(['ok' => true, 'data' => []]);
+        }
+
+        // Reservas activas (pendiente|confirmada) de ese profesor en esa fecha
+        $reservasDelDia = Reserva::whereHas('anuncio', fn($q) => $q->where('profesor_id', $profesorId))
+            ->whereIn('estado', ['pendiente', 'confirmada'])
+            ->whereDate('fecha_clase', $fecha)
+            ->get(['fecha_clase', 'duracion_h']);
+
+        // Construir lista de slots de 30 min ocupados
+        $slotsOcupados = [];
+        foreach ($reservasDelDia as $r) {
+            $inicio = new \DateTime($r->fecha_clase);
+            $fin    = clone $inicio;
+            $fin->modify('+' . ((int)($r->duracion_h * 60)) . ' minutes');
+            $cur = clone $inicio;
+            while ($cur < $fin) {
+                $slotsOcupados[] = $cur->format('H:i');
+                $cur->modify('+30 minutes');
+            }
+        }
+
+        // Generar slots disponibles para la duración solicitada
+        $slotsLibres = [];
+        foreach ($bloques as $bloque) {
+            $cur       = new \DateTime($fecha . ' ' . $bloque->hora_inicio);
+            $finBloque = new \DateTime($fecha . ' ' . $bloque->hora_fin);
+
+            while (true) {
+                $finSlot = clone $cur;
+                $finSlot->modify('+' . ((int)($duracion * 60)) . ' minutes');
+
+                if ($finSlot > $finBloque) break;
+
+                $libre = true;
+                $check = clone $cur;
+                while ($check < $finSlot) {
+                    if (in_array($check->format('H:i'), $slotsOcupados)) {
+                        $libre = false;
+                        break;
+                    }
+                    $check->modify('+30 minutes');
+                }
+
+                if ($libre) {
+                    $slotsLibres[] = $cur->format('H:i');
+                }
+
+                $cur->modify('+30 minutes');
+            }
+        }
+
+        sort($slotsLibres);
+
+        return response()->json(['ok' => true, 'data' => $slotsLibres]);
     }
 }

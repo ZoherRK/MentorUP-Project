@@ -32,6 +32,7 @@ Route::get('/anuncios/{id}', [AnuncioController::class, 'show']);
 // ── PUBLIC: Disponibilidad de profesores (para que alumnos la consulten) ──
 Route::get('/profesores/{profesorId}/disponibilidad', [DisponibilidadController::class, 'publicShow']);
 Route::post('/profesores/{profesorId}/verificar-fecha', [DisponibilidadController::class, 'verificarFecha']);
+Route::get('/profesores/{profesorId}/slots', [DisponibilidadController::class, 'slotsLibres']);
 
 // ── PROTECTED: Require valid Sanctum token ────────────────────────────────
 Route::middleware('auth:sanctum')->group(function () {

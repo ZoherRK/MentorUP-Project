@@ -104,6 +104,24 @@ class ReservaController extends Controller
             return response()->json(['ok' => false, 'mensaje' => 'Ya tienes una solicitud activa para este anuncio.'], 422);
         }
 
+        // Verificar que no haya otra reserva activa solapada con este profesor
+        $fechaInicio = new \DateTime($data['fecha_clase']);
+        $duracionMin = (int)($data['duracion_h'] * 60);
+        $fechaFin    = (clone $fechaInicio)->modify("+{$duracionMin} minutes");
+
+        $solapada = Reserva::whereHas('anuncio', fn($q) => $q->where('profesor_id', $profesor->id))
+            ->whereIn('estado', ['pendiente', 'confirmada'])
+            ->where('fecha_clase', '<', $fechaFin->format('Y-m-d H:i:s'))
+            ->whereRaw("DATE_ADD(fecha_clase, INTERVAL duracion_h * 60 MINUTE) > ?", [$fechaInicio->format('Y-m-d H:i:s')])
+            ->exists();
+
+        if ($solapada) {
+            return response()->json([
+                'ok'      => false,
+                'mensaje' => 'Esa hora ya está reservada por otro alumno. Por favor, elige otra franja horaria.',
+            ], 422);
+        }
+
         $precioTotal = $anuncio->precio_hora * $data['duracion_h'];
 
         $reserva = Reserva::create([
