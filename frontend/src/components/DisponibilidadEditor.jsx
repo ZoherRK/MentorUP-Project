@@ -176,7 +176,7 @@ export default function DisponibilidadEditor() {
       {bloques.length > 0 && (
         <div style={s.actions}>
           <button onClick={handleSave} disabled={saving} style={s.btnSave}>
-            {saving ? 'Guardando…' : '💾 Guardar disponibilidad'}
+            {saving ? 'Guardando…' : 'Guardar disponibilidad'}
           </button>
         </div>
       )}
