@@ -33,12 +33,8 @@ export default function Home() {
             )}
           </div>
 
-          {/* Trust badges */}
-          <div style={s.trustRow}>
-            {['⭐ 4.9/5 valoración media', '✅ Sin compromiso', '🔒 Pagos seguros'].map(t => (
-              <span key={t} style={s.trustBadge}>{t}</span>
-            ))}
-          </div>
+          
+          
         </div>
       </section>
 

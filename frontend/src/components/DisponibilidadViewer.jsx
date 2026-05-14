@@ -36,7 +36,7 @@ export default function DisponibilidadViewer({ profesorId }) {
 
   return (
     <div style={s.wrap}>
-      <h4 style={s.title}>🗓️ Disponibilidad horaria</h4>
+      <h4 style={s.title}>Disponibilidad horaria</h4>
       <div style={s.grid}>
         {byDay.map(({ dia, bloques }) => (
           <div key={dia} style={s.dayRow}>
