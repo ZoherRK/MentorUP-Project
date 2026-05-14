@@ -8,15 +8,6 @@ use App\Models\Reserva;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
-/**
- * CONTROLLER: DisponibilidadController
- *
- * Gestiona la disponibilidad horaria semanal de los profesores.
- *
- * GET  /api/disponibilidad                → Lista del profesor autenticado
- * POST /api/disponibilidad                → Guarda disponibilidad completa (reemplaza todo)
- * GET  /api/profesores/{id}/disponibilidad → Disponibilidad pública de un profesor
- */
 class DisponibilidadController extends Controller
 {
     // ─────────────────────────────────────────────────────────────────────
@@ -53,22 +44,51 @@ class DisponibilidadController extends Controller
         }
 
         $data = $request->validate([
-            'bloques'                 => 'required|array|max:50',
-            'bloques.*.dia_semana'    => 'required|integer|between:0,6',
-            'bloques.*.hora_inicio'   => 'required|date_format:H:i',
-            'bloques.*.hora_fin'      => 'required|date_format:H:i|after:bloques.*.hora_inicio',
+            'bloques'               => 'required|array|max:50',
+            'bloques.*.dia_semana'  => 'required|integer|between:0,6',
+            'bloques.*.hora_inicio' => 'required|string',
+            'bloques.*.hora_fin'    => 'required|string',
         ]);
+
+        $bloques = $data['bloques'];
+
+        // Validar formato y valores de hora
+        foreach ($bloques as $idx => $bloque) {
+            foreach (['hora_inicio', 'hora_fin'] as $campo) {
+                $partes = explode(':', $bloque[$campo]);
+                if (count($partes) !== 2) {
+                    return response()->json(['ok' => false, 'mensaje' => "Formato de hora inválido en bloque $idx ($campo)."], 422);
+                }
+                $h = (int)$partes[0];
+                $m = (int)$partes[1];
+                if ($h < 0 || $h > 23 || ($m !== 0 && $m !== 30)) {
+                    return response()->json(['ok' => false, 'mensaje' => "Hora inválida en bloque $idx ($campo): {$bloque[$campo]}"], 422);
+                }
+            }
+
+            // Comparar como minutos totales para evitar problemas con strings
+            $inicioMin = (int)explode(':', $bloque['hora_inicio'])[0] * 60 + (int)explode(':', $bloque['hora_inicio'])[1];
+            $finMin    = (int)explode(':', $bloque['hora_fin'])[0] * 60 + (int)explode(':', $bloque['hora_fin'])[1];
+
+            if ($finMin <= $inicioMin) {
+                return response()->json(['ok' => false, 'mensaje' => 'La hora de fin debe ser posterior a la hora de inicio.'], 422);
+            }
+        }
 
         $profesor = Profesor::where('usuario_id', $usuario->id)->firstOrFail();
 
         // Validar solapamientos dentro de los bloques enviados
-        $bloques = $data['bloques'];
         foreach ($bloques as $i => $b1) {
             foreach ($bloques as $j => $b2) {
                 if ($i >= $j) continue;
                 if ($b1['dia_semana'] !== $b2['dia_semana']) continue;
 
-                if ($b1['hora_inicio'] < $b2['hora_fin'] && $b2['hora_inicio'] < $b1['hora_fin']) {
+                $b1InicioMin = (int)explode(':', $b1['hora_inicio'])[0] * 60 + (int)explode(':', $b1['hora_inicio'])[1];
+                $b1FinMin    = (int)explode(':', $b1['hora_fin'])[0] * 60 + (int)explode(':', $b1['hora_fin'])[1];
+                $b2InicioMin = (int)explode(':', $b2['hora_inicio'])[0] * 60 + (int)explode(':', $b2['hora_inicio'])[1];
+                $b2FinMin    = (int)explode(':', $b2['hora_fin'])[0] * 60 + (int)explode(':', $b2['hora_fin'])[1];
+
+                if ($b1InicioMin < $b2FinMin && $b2InicioMin < $b1FinMin) {
                     return response()->json([
                         'ok'      => false,
                         'mensaje' => 'Hay bloques horarios solapados en el mismo día. Por favor, revisa tu disponibilidad.',
@@ -152,7 +172,6 @@ class DisponibilidadController extends Controller
 
     // ─────────────────────────────────────────────────────────────────────
     // SLOTS LIBRES — devuelve los slots disponibles de un día concreto
-    // considerando la disponibilidad del profesor y las reservas existentes
     // GET /api/profesores/{id}/slots?fecha=YYYY-MM-DD&duracion=1
     // ─────────────────────────────────────────────────────────────────────
 
@@ -196,7 +215,7 @@ class DisponibilidadController extends Controller
             $fin->modify('+' . ((int)($r->duracion_h * 60)) . ' minutes');
             $cur = clone $inicio;
             while ($cur < $fin) {
-                $slotsOcupados[] = $cur->format('H:i');
+                $slotsOcupados[] = $cur->format('G:i');
                 $cur->modify('+30 minutes');
             }
         }
@@ -216,7 +235,7 @@ class DisponibilidadController extends Controller
                 $libre = true;
                 $check = clone $cur;
                 while ($check < $finSlot) {
-                    if (in_array($check->format('H:i'), $slotsOcupados)) {
+                    if (in_array($check->format('G:i'), $slotsOcupados)) {
                         $libre = false;
                         break;
                     }
@@ -224,7 +243,7 @@ class DisponibilidadController extends Controller
                 }
 
                 if ($libre) {
-                    $slotsLibres[] = $cur->format('H:i');
+                    $slotsLibres[] = $cur->format('G:i');
                 }
 
                 $cur->modify('+30 minutes');

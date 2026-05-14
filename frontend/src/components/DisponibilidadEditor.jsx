@@ -3,10 +3,10 @@ import { apiGetDisponibilidad, apiSaveDisponibilidad } from '../services/api';
 
 const DIAS = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
 
-const HORAS = Array.from({ length: 48 }, (_, i) => {
-  const h = Math.floor(i / 2);
+const HORAS = Array.from({ length: 36 }, (_, i) => {
+  const h = Math.floor(i / 2) + 6;
   const m = i % 2 === 0 ? '00' : '30';
-  return `${String(h).padStart(2, '0')}:${m}`;
+  return `${h}:${m}`;
 });
 
 function BloqueRow({ bloque, onUpdate, onDelete }) {
@@ -34,7 +34,7 @@ function BloqueRow({ bloque, onUpdate, onDelete }) {
         onChange={e => handleInicioChange(e.target.value)}
         style={s.select}
       >
-        {HORAS.filter(h => h < '23:30').map(h => (
+        {HORAS.filter(h => h !== '23:30').map(h => (
           <option key={h} value={h}>{h}</option>
         ))}
       </select>
@@ -71,7 +71,7 @@ export default function DisponibilidadEditor() {
   const addBloque = () => {
     setBloques(prev => [
       ...prev,
-      { dia_semana: 0, hora_inicio: '09:00', hora_fin: '11:00' },
+      { dia_semana: 0, hora_inicio: '9:00', hora_fin: '11:00' },
     ]);
   };
 
