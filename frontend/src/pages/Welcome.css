@@ -1,0 +1,179 @@
+/* ============================================================
+   Welcome.css — Página de bienvenida
+   Fondo verde oscuro de MentorUP, tarjeta centrada, limpio.
+   ============================================================ */
+
+
+/* Página completa — fondo verde oscuro de la marca */
+
+.welcome {
+    min-height: 100vh;
+    background: linear-gradient(160deg, #1a2e2b 0%, #243d39 60%, #1e3530 100%);
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-family);
+}
+
+
+/* ── HEADER ──────────────────────────────────────────────── */
+
+.welcome-header {
+    padding: 28px 40px;
+    text-align: center;
+}
+
+.welcome-logo {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    letter-spacing: -0.3px;
+}
+
+.welcome-logo strong {
+    color: var(--color-primary);
+    /* verde azulado #4a9d8f */
+}
+
+
+/* ── CONTENIDO CENTRAL ───────────────────────────────────── */
+
+.welcome-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+
+/* Tarjeta blanca central */
+
+.welcome-card {
+    background: white;
+    border-radius: 20px;
+    padding: 48px 40px;
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Icono */
+
+.welcome-icon img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin: 0 4px;
+    margin-bottom: -30px;
+    margin-top: -70px;
+}
+
+.welcome-icon-top {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    vertical-align: middle;
+}
+
+
+/* Título */
+
+.welcome-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--color-dark);
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+
+
+/* Descripción */
+
+.welcome-subtitle {
+    font-size: 1rem;
+    color: var(--color-gray);
+    line-height: 1.6;
+    margin-bottom: 36px;
+}
+
+
+/* Botones */
+
+.welcome-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.welcome-btn {
+    width: 100%;
+    padding: 14px 24px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: var(--border-radius);
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    transition: all 0.2s ease;
+}
+
+
+/* El btn-outline aquí tiene borde verde, no oscuro */
+
+.welcome-card .btn-outline {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+.welcome-card .btn-outline:hover {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+
+/* Enlace secundario */
+
+.welcome-link {
+    font-size: 0.9rem;
+    color: var(--color-gray);
+}
+
+.welcome-link a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.welcome-link a:hover {
+    text-decoration: underline;
+}
+
+
+/* ── FOOTER ──────────────────────────────────────────────── */
+
+.welcome-footer {
+    text-align: center;
+    padding: 20px;
+    color: rgba(255, 255, 255, 0.25);
+    font-size: 0.8rem;
+}
+
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+
+@media (max-width: 480px) {
+    .welcome-card {
+        padding: 36px 24px;
+    }
+    .welcome-title {
+        font-size: 1.5rem;
+    }
+    .welcome-header {
+        padding: 24px 20px;
+    }
+}

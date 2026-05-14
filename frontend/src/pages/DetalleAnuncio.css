@@ -1,0 +1,124 @@
+/* Cabecera */
+.detalle-header {
+  background: var(--color-primary-light);
+  padding: 28px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.detalle-breadcrumb {
+  font-size: 0.85rem;
+  color: var(--color-gray);
+  margin-bottom: 6px;
+}
+
+.detalle-breadcrumb a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.detalle-header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* Layout de dos columnas */
+.detalle-body {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 40px;
+  padding-top: 40px;
+  padding-bottom: 60px;
+}
+
+/* ── Info profesor ─── */
+.detalle-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.detalle-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.detalle-info h2       { font-size: 1.3rem; font-weight: 700; margin: 0; }
+.detalle-asignatura    { color: var(--color-primary); font-weight: 600; }
+.detalle-ciudad        { color: var(--color-gray); font-size: 0.9rem; }
+
+.detalle-precio strong { font-size: 1.8rem; font-weight: 800; }
+.detalle-precio span   { color: var(--color-gray); }
+
+.detalle-descripcion h4,
+.detalle-contacto h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-gray);
+  margin-bottom: 6px;
+}
+
+.detalle-descripcion p  { color: var(--color-gray); font-size: 0.95rem; line-height: 1.6; }
+.detalle-contacto p     { font-size: 0.95rem; margin-bottom: 4px; }
+
+/* ── Formulario ─── */
+.detalle-form {
+  background: white;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 32px;
+}
+
+.detalle-form h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 4px; }
+.detalle-anuncio-nombre {
+  color: var(--color-gray);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+/* Resumen de precio */
+.reserva-resumen {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-primary-light);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 16px 0;
+}
+
+.reserva-resumen strong {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+}
+
+.reserva-nota {
+  font-size: 0.8rem;
+  color: var(--color-gray);
+  margin-top: 12px;
+  text-align: center;
+}
+
+/* Mensaje de éxito */
+.exito-msg {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.exito-icon { font-size: 3rem; margin-bottom: 16px; }
+.exito-msg h3 { font-size: 1.4rem; margin-bottom: 8px; }
+.exito-msg p  { color: var(--color-gray); margin-bottom: 24px; }
+
+@media (max-width: 768px) {
+  .detalle-body { grid-template-columns: 1fr; }
+}

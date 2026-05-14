@@ -1,0 +1,140 @@
+/* ============================================================
+   AdminLogin.css — Estilos para la página de login del admin
+   Diseño oscuro y sobrio para diferenciarlo del login normal
+   ============================================================ */
+
+.admin-login-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.admin-login-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* Cabecera */
+.admin-login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.admin-shield {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.admin-login-header h1 {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+}
+
+.admin-login-header p {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+  margin: 0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Campos del formulario */
+.admin-login-card .form-group {
+  margin-bottom: 1.25rem;
+}
+
+.admin-login-card .form-group label {
+  display: block;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+}
+
+.admin-login-card .form-group input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, background 0.2s;
+  box-sizing: border-box;
+}
+
+.admin-login-card .form-group input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.admin-login-card .form-group input:focus {
+  outline: none;
+  border-color: #e94560;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Error */
+.admin-login-card .error-msg {
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+/* Botón de acceso */
+.btn-admin-login {
+  width: 100%;
+  padding: 0.85rem;
+  background: linear-gradient(135deg, #e94560, #c23152);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+  margin-top: 0.5rem;
+}
+
+.btn-admin-login:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-admin-login:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Link volver */
+.admin-login-back {
+  text-align: center;
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+}
+
+.admin-login-back a {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.admin-login-back a:hover {
+  color: rgba(255, 255, 255, 0.7);
+}

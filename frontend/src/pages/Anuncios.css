@@ -1,0 +1,583 @@
+/* ============================================================
+   Anuncios.css — Tablón de profesores
+   Diseño fiel al mockup: hero verde, destacados en cards
+   de colores, grid de 4 columnas para todos los anuncios.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+.anuncios-page {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: #f5f6f7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* ── HERO ─────────────────────────────────────────────────── */
+
+.an-hero {
+    background: linear-gradient(135deg, #3d8c80 0%, #4fa898 60%, #5bbdab 100%);
+    padding: 44px 32px 38px;
+    text-align: center;
+}
+
+.an-hero h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+    margin: 0 0 6px;
+    letter-spacing: -0.3px;
+}
+
+.an-hero p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0 0 22px;
+}
+
+.an-buscador {
+    background: #fff;
+    border-radius: 12px;
+    padding: 6px 6px 6px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 700px;
+    margin: 0 auto;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.14);
+}
+
+.an-lupa {
+    flex-shrink: 0;
+}
+
+.an-buscador input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 13px;
+    font-family: inherit;
+    color: #333;
+    background: transparent;
+    min-width: 0;
+}
+
+.an-buscador input::placeholder {
+    color: #aaa;
+}
+
+.an-divider {
+    width: 1px;
+    height: 24px;
+    background: #e0e0e0;
+    flex-shrink: 0;
+}
+
+.an-ciudad {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 8px;
+    flex-shrink: 0;
+}
+
+.an-ciudad-dot {
+    width: 8px;
+    height: 8px;
+    background: #4a9d8f;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.an-ciudad span {
+    font-size: 12px;
+    color: #555;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+.an-buscador button {
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    white-space: nowrap;
+    transition: background 0.15s;
+}
+
+.an-buscador button:hover {
+    background: #4a9d8f;
+}
+
+
+/* ── CONTENIDO ─────────────────────────────────────────────── */
+
+.an-content {
+    padding: 28px 32px 40px;
+    max-width: 1140px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.an-cargando {
+    text-align: center;
+    color: #888;
+    padding: 40px 0;
+    font-size: 14px;
+}
+
+.an-section-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.an-section-header h2 {
+    font-size: 18px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0 0 2px;
+}
+
+.an-section-header p {
+    font-size: 14px;
+    color: #999;
+    margin: 0;
+    font-weight: 400;
+}
+
+.an-ver-todos {
+    font-size: 14px;
+    color: #4a9d8f;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    padding-top: 2px;
+}
+
+.an-ver-todos:hover {
+    color: #3a7d70;
+}
+
+
+/* ── TARJETAS DESTACADAS ───────────────────────────────────── */
+
+.an-destacados-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 36px;
+}
+
+.an-dest-card {
+    border-radius: 16px;
+    padding: 20px 18px 18px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    transition: transform 0.18s, box-shadow 0.18s;
+}
+
+.an-dest-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
+}
+
+.an-dest-deco {
+    position: absolute;
+    top: -18px;
+    right: -18px;
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.an-dest-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.an-dest-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.22);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 13px;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.an-dest-nombre {
+    font-size: 18px;
+    font-weight: 800;
+    margin: 0;
+    line-height: 1.25;
+}
+
+.an-dest-asigs {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 3px 0 0;
+}
+
+.an-dest-reviews {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.65);
+    margin-left: 5px;
+}
+
+.estrellas {
+    font-size: 14px;
+    letter-spacing: 0.6px;
+}
+
+.an-dest-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 18px;
+}
+
+.an-dest-chip {
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 22px;
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.an-dest-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.an-dest-precio {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.an-dest-precio span {
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 0.75;
+}
+
+.an-dest-btn {
+    background: rgba(255, 255, 255, 0.18);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    color: #fff;
+    padding: 9px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.15s;
+}
+
+.an-dest-btn:hover {
+    background: rgba(255, 255, 255, 0.32);
+}
+
+
+/* ── GRID DE TODOS LOS ANUNCIOS ───────────────────────────── */
+
+
+/* ── GRID DE TODOS LOS ANUNCIOS (AMPLIADO) ───────────────────────────── */
+
+.an-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(320px, 1fr));
+    /* tarjetas más anchas */
+    gap: 22px;
+    /* más espacio entre tarjetas */
+    justify-content: center;
+    /* centra el grid */
+}
+
+
+/* Tarjeta más ancha y menos “alta visualmente” */
+
+.an-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 22px;
+    /* más aire horizontal */
+    border: 1px solid #eaebec;
+    cursor: pointer;
+    transition: box-shadow 0.15s, transform 0.15s;
+    display: flex;
+    flex-direction: column;
+    max-width: 480px;
+    /* evita que se estiren demasiado */
+    margin: 0 auto;
+    /* centra cada tarjeta */
+}
+
+.an-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transform: translateY(-3px);
+}
+
+.an-card-desc {
+    -webkit-line-clamp: 2;
+    /* antes 3 → reduce altura */
+    margin-bottom: 14px;
+}
+
+.an-card-top {
+    margin-bottom: 14px;
+}
+
+.an-card-bottom {
+    padding-top: 14px;
+}
+
+.an-card-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    /* antes 10px */
+    margin-bottom: 12px;
+}
+
+.an-card-avatar {
+    width: 48px;
+    /* antes 38px */
+    height: 48px;
+    /* antes 38px */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 15px;
+    /* antes 12px */
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.an-card-nombre {
+    font-size: 16px;
+    /* antes 13px */
+    font-weight: 800;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.an-card-asig {
+    font-size: 13px;
+    /* antes 11px */
+    color: #4a9d8f;
+    font-weight: 600;
+    margin: 2px 0 0;
+}
+
+.an-card-reviews {
+    font-size: 12px;
+    /* antes 10px */
+    color: #999;
+    margin-left: 3px;
+}
+
+.an-card-desc {
+    font-size: 13px;
+    /* antes 11px */
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 12px;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.an-card-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    /* antes 4px */
+    margin-bottom: 14px;
+}
+
+.an-card-chip {
+    border-radius: 22px;
+    /* antes 20px */
+    padding: 4px 11px;
+    /* antes 2px 9px */
+    font-size: 12px;
+    /* antes 10px */
+    font-weight: 700;
+}
+
+.an-card-chip--verde {
+    background: #e8f7f4;
+    color: #3a7d70;
+}
+
+.an-card-chip--gris {
+    background: #f0f0f0;
+    color: #666;
+}
+
+.an-card-chip--oscuro {
+    background: #1a1a1a;
+    color: #fff;
+}
+
+.an-card-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 12px;
+    /* antes 10px */
+    margin-top: auto;
+}
+
+.an-card-precio {
+    font-size: 21px;
+    /* antes 17px */
+    font-weight: 800;
+    color: #1a1a1a;
+}
+
+.an-card-precio span {
+    font-size: 12px;
+    /* antes 10px */
+    color: #aaa;
+    font-weight: 400;
+}
+
+.an-card-btn {
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    /* antes 7px */
+    padding: 8px 16px;
+    /* antes 6px 13px */
+    font-size: 13px;
+    /* antes 11px */
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    text-decoration: none;
+    transition: background 0.15s;
+}
+
+.an-card-btn:hover {
+    background: #4a9d8f;
+}
+
+.an-card-disp {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    /* antes 5px */
+    font-size: 12px;
+    /* antes 10px */
+    font-weight: 700;
+    margin-top: 10px;
+    /* antes 8px */
+}
+
+.an-card-disp-dot {
+    width: 7px;
+    /* antes 6px */
+    height: 7px;
+    /* antes 6px */
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.an-card-disp--verde {
+    color: #16a34a;
+}
+
+.an-card-disp--verde .an-card-disp-dot {
+    background: #22c55e;
+}
+
+.an-card-disp--amarillo {
+    color: #d97706;
+}
+
+.an-card-disp--amarillo .an-card-disp-dot {
+    background: #f59e0b;
+}
+
+
+/* ── FOOTER ───────────────────────────────────────────────── */
+
+.an-footer {
+    background: #1a1a1a;
+    color: #666;
+    padding: 14px 32px;
+    text-align: center;
+    font-size: 11px;
+    margin-top: auto;
+}
+
+.an-footer a {
+    color: #aaa;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.15s;
+}
+
+.an-footer a:hover {
+    color: #fff;
+}
+
+
+/* ── RESPONSIVE ───────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+    .an-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .an-content {
+        padding: 20px 16px 32px;
+    }
+    .an-hero {
+        padding: 32px 16px 28px;
+    }
+    .an-destacados-grid {
+        grid-template-columns: 1fr;
+    }
+    .an-grid {
+        grid-template-columns: 1fr;
+    }
+    .an-divider {
+        display: none;
+    }
+}

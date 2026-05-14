@@ -1,0 +1,250 @@
+/* ── HERO ─────────────────────────────────────────────────── */
+.hero {
+  background: linear-gradient(135deg, #3d8a7d 0%, #4a9d8f 50%, #5bb3a4 100%);
+  padding: 80px 0;
+  min-height: 520px;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: white;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.hero-title span {
+  color: #d4f0eb; /* Un verde más claro para resaltar */
+}
+
+.hero-subtitle {
+  color: rgba(255,255,255,0.85);
+  font-size: 1.1rem;
+  margin-bottom: 32px;
+  max-width: 440px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+/* Botones en el hero tienen colores invertidos */
+.hero .btn-outline {
+  border-color: white;
+  color: white;
+}
+.hero .btn-outline:hover {
+  background: white;
+  color: var(--color-primary);
+}
+
+/* Estadísticas */
+.hero-stats {
+  display: flex;
+  gap: 32px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat strong {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: white;
+}
+
+.stat span {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.75);
+}
+
+/* Tarjeta decorativa */
+.hero-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: var(--shadow-lg);
+}
+
+.hero-search {
+  background: var(--color-gray-light);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--color-gray);
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+.hero-profiles {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mini-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+}
+
+.mini-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.mini-name    { font-weight: 700; font-size: 0.9rem; margin: 0; }
+.mini-subject { color: var(--color-gray); font-size: 0.8rem; margin: 0; }
+.stars        { color: #f59e0b; font-size: 0.85rem; }
+
+/* ── SECCIONES GENERALES ─────────────────────────────────── */
+.section-title {
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--color-gray);
+  margin-bottom: 48px;
+}
+
+/* ── CÓMO FUNCIONA ───────────────────────────────────────── */
+.como-funciona {
+  padding: 80px 0;
+  background: var(--color-primary-light);
+}
+
+.pasos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.paso {
+  background: white;
+  border-radius: var(--border-radius);
+  padding: 32px 24px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.paso-num {
+  width: 48px;
+  height: 48px;
+  background: var(--color-primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin: 0 auto 16px;
+}
+
+.paso h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+.paso p  { color: var(--color-gray); font-size: 0.95rem; }
+
+/* ── PERFILES ────────────────────────────────────────────── */
+.perfiles {
+  padding: 80px 0;
+}
+
+.perfiles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.perfil-card {
+  background: white;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 32px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.perfil-icon { font-size: 2.5rem; margin-bottom: 12px; }
+.perfil-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+.perfil-card p  { color: var(--color-gray); font-size: 0.9rem; margin-bottom: 20px; }
+
+/* ── FOOTER ──────────────────────────────────────────────── */
+.footer {
+  background: #2d2d2d;
+  color: #ccc;
+  padding: 48px 0 0;
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 40px;
+}
+
+.footer-logo {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 8px;
+}
+.footer-logo strong { color: var(--color-primary); }
+.footer-brand p     { font-size: 0.9rem; }
+
+.footer-links {
+  display: flex;
+  gap: 48px;
+}
+
+.footer-links h4 { color: white; font-weight: 600; margin-bottom: 12px; }
+.footer-links ul { list-style: none; }
+.footer-links li { margin-bottom: 8px; }
+.footer-links a  { color: #aaa; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+.footer-links a:hover { color: white; }
+
+.footer-copy {
+  border-top: 1px solid #444;
+  padding: 16px 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero-inner   { grid-template-columns: 1fr; }
+  .hero-card    { display: none; } /* Ocultamos la tarjeta en móvil */
+  .hero-title   { font-size: 2.5rem; }
+  .pasos        { grid-template-columns: 1fr; }
+  .perfiles-grid{ grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; }
+}

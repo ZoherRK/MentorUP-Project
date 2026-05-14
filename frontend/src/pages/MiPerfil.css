@@ -1,0 +1,137 @@
+/* Cabecera del perfil */
+.perfil-header {
+  background: linear-gradient(135deg, #3d8a7d, #4a9d8f);
+  padding: 40px 0;
+}
+
+.perfil-rol-badge {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.perfil-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.perfil-avatar-grande {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  border: 3px solid rgba(255,255,255,0.5);
+}
+
+.perfil-info h1 { color: white; font-size: 1.6rem; margin: 0; }
+.perfil-info p  { color: rgba(255,255,255,0.8); margin: 4px 0 0; }
+
+/* Layout principal */
+.perfil-body {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 32px;
+  padding-top: 32px;
+  padding-bottom: 60px;
+}
+
+/* Tarjeta de bienvenida */
+.bienvenida-card {
+  background: var(--color-primary-light);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--border-radius);
+  padding: 20px 24px;
+  margin-bottom: 24px;
+}
+
+.bienvenida-card h2 { font-size: 1.2rem; margin-bottom: 4px; }
+.bienvenida-card p  { color: var(--color-gray); font-size: 0.95rem; }
+
+/* Secciones */
+.perfil-seccion { margin-bottom: 32px; }
+.perfil-seccion h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; }
+
+.seccion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+/* Tarjeta de reserva */
+.reserva-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  margin-bottom: 12px;
+  background: white;
+}
+
+.reserva-item h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
+.texto-gris { color: var(--color-gray); font-size: 0.85rem; }
+
+/* Estado vacío */
+.vacio-msg {
+  text-align: center;
+  padding: 40px 20px;
+  border: 2px dashed var(--color-border);
+  border-radius: var(--border-radius);
+}
+
+.vacio-msg p { color: var(--color-gray); margin-bottom: 16px; }
+
+/* Lateral */
+.perfil-lateral { display: flex; flex-direction: column; gap: 16px; }
+
+.perfil-lateral .card h4 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-gray);
+  margin-bottom: 12px;
+}
+
+.datos-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.accion-btn {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  text-align: center;
+  transition: background 0.2s;
+  margin-bottom: 8px;
+}
+
+.accion-btn:hover { background: var(--color-primary); color: white; }
+
+@media (max-width: 768px) {
+  .perfil-body { grid-template-columns: 1fr; }
+}

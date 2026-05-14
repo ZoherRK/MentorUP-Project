@@ -1,0 +1,220 @@
+/* ============================================================
+   Navbar.css — Barra de navegación superior
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+.navbar {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: #fff;
+    border-bottom: 1px solid #e8e9eb;
+    height: 56px;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+
+/* Logo */
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 15px;
+    font-weight: 800;
+    color: #1a1a1a;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.navbar-logo img {
+    height: 70px;
+    vertical-align: middle;
+    margin: 0 4px;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.navbar-logo span {
+    color: #4a9d8f;
+}
+
+.navbar-logo-icon {
+    width: 24px;
+    height: 24px;
+    background: #4a9d8f;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+
+/* Menú central */
+
+.navbar-menu {
+    display: flex;
+    list-style: none;
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-menu a {
+    font-size: 13px;
+    color: #666;
+    text-decoration: none;
+    font-weight: 500;
+    padding-bottom: 2px;
+    transition: color 0.15s;
+}
+
+.navbar-menu a:hover {
+    color: #1a1a1a;
+}
+
+
+/* Enlace activo: subrayado verde */
+
+.navbar-menu a.activo {
+    color: #1a1a1a;
+    font-weight: 700;
+    border-bottom: 2px solid #4a9d8f;
+}
+
+
+/* Zona derecha */
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+
+/* Botón icono (campana) */
+
+.navbar-icon-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #f0f0f0;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    transition: background 0.15s;
+}
+
+.navbar-icon-btn:hover {
+    background: #e0e0e0;
+}
+
+
+/* Avatar circular con iniciales */
+
+.navbar-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #4a9d8f;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: background 0.15s;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.navbar-avatar:hover {
+    background: #3a7d70;
+}
+
+
+/* Botones de login / registro */
+
+.navbar-btn-secondary {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+    padding: 7px 14px;
+    border-radius: 8px;
+    border: 1.5px solid #e0e0e0;
+    transition: border-color 0.15s, color 0.15s;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.navbar-btn-secondary:hover {
+    border-color: #4a9d8f;
+    color: #4a9d8f;
+}
+
+.navbar-btn-primary {
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    padding: 7px 16px;
+    border-radius: 8px;
+    background: #4a9d8f;
+    transition: background 0.15s;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.navbar-btn-primary:hover {
+    background: #3a7d70;
+}
+
+
+/* Responsive */
+
+@media (max-width: 640px) {
+    .navbar-menu {
+        display: none;
+    }
+    .navbar {
+        padding: 0 16px;
+    }
+}
+/* Botón admin (visible cuando el usuario logueado es admin) */
+.navbar-btn-admin {
+  font-size: 12px;
+  font-weight: 700;
+  color: #e94560;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: rgba(233, 69, 96, 0.1);
+  border: 1px solid rgba(233, 69, 96, 0.3);
+  transition: background 0.15s;
+}
+
+.navbar-btn-admin:hover {
+  background: rgba(233, 69, 96, 0.2);
+}
+
+/* Icono admin discreto (visible cuando no hay sesión) */
+.navbar-btn-admin-subtle {
+  font-size: 14px;
+  text-decoration: none;
+  opacity: 0.3;
+  transition: opacity 0.2s;
+  padding: 4px;
+}
+
+.navbar-btn-admin-subtle:hover {
+  opacity: 0.7;
+}

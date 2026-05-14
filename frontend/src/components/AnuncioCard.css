@@ -1,0 +1,100 @@
+/* Tarjeta de anuncio */
+
+.anuncio-card {
+  background: white;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 20px;
+  transition: box-shadow 0.2s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.anuncio-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px); /* Sube ligeramente al pasar el ratón */
+}
+
+/* Borde verde para anuncios destacados */
+.anuncio-card--destacado {
+  border-color: var(--color-primary);
+}
+
+/* Avatar circular con iniciales */
+.anuncio-card__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.anuncio-card__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.anuncio-card__profesor {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.anuncio-card__asignatura {
+  color: var(--color-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.anuncio-card__titulo {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-gray);
+  line-height: 1.4;
+}
+
+/* Chips pequeñas de información */
+.anuncio-card__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Pie de tarjeta */
+.anuncio-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border);
+}
+
+.anuncio-card__precio strong {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--color-dark);
+}
+
+.anuncio-card__precio span {
+  color: var(--color-gray);
+  font-size: 0.9rem;
+}
