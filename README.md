@@ -271,9 +271,3 @@ Verifica que la base de datos existe y que las credenciales en `.env` son correc
 
 **Las valoraciones no se guardan**  
 Solo se puede valorar un anuncio después de que la reserva esté en estado `completada`.
-
----
-
-## 📄 Licencia
-
-MIT — Proyecto académico MentorUP 2026.
